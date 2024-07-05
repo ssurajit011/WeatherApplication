@@ -1,44 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:padding="16dp"
-    android:background="@color/design_default_color_background">
+    android:background="@drawable/background"
+    tools:context=".MainActivity"
+    android:id="@+id/rootLayout">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+    <TextView
+        android:id="@+id/weatherTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="@string/weather_data"
+        android:textColor="#039BE5"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/cityEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/cityEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter city"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_below="@id/weatherTextView"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/enter_city_name"
+        android:minHeight="48dp"
+        android:textColorHint="#42A5F5"
+        tools:ignore="VisualLintTextFieldSize" />
 
     <Button
         android:id="@+id/fetchWeatherButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fetch Weather"
-        android:layout_below="@id/textInputLayout"
-        android:layout_marginTop="16dp"
+        android:text="@string/fetch_weather_report"
+        android:layout_below="@id/cityEditText"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/teal_700" />
+        android:layout_marginBottom="16dp"/>
 
-    <TextView
-        android:id="@+id/weatherTextView"
+    <LinearLayout
+        android:id="@+id/weatherDetailsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_below="@id/fetchWeatherButton"
-        android:layout_marginTop="32dp"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/temperatureTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/box_background"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/temp"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/humidityTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/box_background"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/humiditydata"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/windSpeedTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/box_background"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/wind_speed"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/weatherInfoTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/box_background"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="@string/weather"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weatherDetailsLayout"
+        android:layout_marginTop="16dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/historicalDataLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
 </RelativeLayout>
